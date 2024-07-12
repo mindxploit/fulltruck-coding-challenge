@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import './App.css'
-import WelcomePage from './WelcomePage'
+import Dashboard from './WelcomePage'
 
 const App: FC = () => {
-  return <WelcomePage />
+  return <Dashboard />
 }
 
 export default App
