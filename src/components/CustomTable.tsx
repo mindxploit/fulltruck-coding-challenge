@@ -8,14 +8,17 @@ import { format } from 'date-fns/format' // Import date-fns for date formatting
 import { startOfDay } from 'date-fns/startOfDay'
 import { startOfWeek } from 'date-fns/startOfWeek'
 import { startOfMonth } from 'date-fns/startOfMonth'
+
 type DataTableProps = {
   data: StatisticsResponse['data_table']
   isLoading: boolean
+  aggregationPeriod: 'day' | 'week' | 'month'
+  setAggregationPeriod: React.Dispatch<React.SetStateAction<'day' | 'week' | 'month'>>
 }
 
-const CustomTable: React.FC<DataTableProps> = ({ data, isLoading }) => {
+const CustomTable: React.FC<DataTableProps> = ({ data, isLoading, aggregationPeriod, setAggregationPeriod }) => {
   const [filteredData, setFilteredData] = useState(data)
-  const [aggregationPeriod, setAggregationPeriod] = useState<'day' | 'week' | 'month'>('day')
+
   const [startDate, setStartDate] = useState<Date | null>(null)
   const [endDate, setEndDate] = useState<Date | null>(null)
 
@@ -94,23 +97,54 @@ const CustomTable: React.FC<DataTableProps> = ({ data, isLoading }) => {
     { field: 'active_client', headerName: 'Active clients', width: 150 },
     { field: 'order_count', headerName: 'Total orders', width: 150 },
     { field: 'assigned_count', headerName: 'Assigned orders', width: 150 },
-    { field: 'margin_abs', headerName: 'Absolute margin', width: 150 },
+    {
+      field: 'margin_abs',
+      headerName: 'Absolute margin',
+      width: 150,
+      valueFormatter: (value: number) => {
+        return value + ' €'
+      },
+    },
     {
       field: 'margin_abs_per_order',
       headerName: 'Absolute margin per order',
       width: 200,
       valueFormatter: (value: number) => {
+        return value.toFixed(4) + ' €'
+      },
+    },
+    {
+      field: 'margin_perc',
+      headerName: 'Margin %',
+      width: 150,
+      valueFormatter: (value: number) => {
         return value.toFixed(4)
       },
     },
-    { field: 'margin_perc', headerName: 'Margin %', width: 150,       valueFormatter: (value: number) => {
-      return value.toFixed(4)
-    }, },
-    { field: 'revenue', headerName: 'Total revenue', width: 150 },
-    { field: 'revenue_assigned', headerName: 'Revenue from assigned orders', width: 200 },
-    { field: 'revenue_per_order', headerName: 'Revenue per order', width: 150,       valueFormatter: (value: number) => {
-      return value.toFixed(4)
-    }, },
+    {
+      field: 'revenue',
+      headerName: 'Total revenue',
+      width: 150,
+      valueFormatter: (value: number) => {
+        return value + ' €'
+      },
+    },
+    {
+      field: 'revenue_assigned',
+      headerName: 'Revenue from assigned orders',
+      width: 200,
+      valueFormatter: (value: number) => {
+        return value + ' €'
+      },
+    },
+    {
+      field: 'revenue_per_order',
+      headerName: 'Revenue per order',
+      width: 150,
+      valueFormatter: (value: number) => {
+        return value.toFixed(4) + ' €'
+      },
+    },
   ]
 
   return (
@@ -146,7 +180,7 @@ const CustomTable: React.FC<DataTableProps> = ({ data, isLoading }) => {
           </label>
         </div>
       </div>
-      <div style={{ height: 600, width: '100%' }}>
+      <div style={{ height: 500, width: '100%' }}>
         <DataGrid
           loading={isLoading}
           rows={filteredData}

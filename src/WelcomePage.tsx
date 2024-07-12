@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from 'react'
 import FullTruckLogo from './components/logo/FullTruckLogo'
 import useStatistics, { StatisticsResponse } from './hook/useStatistics'
 import CustomTable from './components/CustomTable'
+import Histograms from './components/Histograms'
 
 const Dashboard: FC = () => {
   const { fetchStatistics } = useStatistics()
@@ -11,6 +12,7 @@ const Dashboard: FC = () => {
   const endDate = null
   const [data, setData] = useState<StatisticsResponse>()
   const [isLoading, setIsLoading] = useState(false)
+  const [aggregationPeriod, setAggregationPeriod] = useState<'day' | 'week' | 'month'>('day')
 
   const fetchData = async () => {
     setIsLoading(true)
@@ -36,7 +38,17 @@ const Dashboard: FC = () => {
       <Stack spacing={2}>
         <Box justifyContent={'center'} alignItems="center">
           <FullTruckLogo />
-          {data && <CustomTable isLoading={isLoading} data={data?.data_table} />}
+          {data && (
+            <>
+              <CustomTable
+                isLoading={isLoading}
+                data={data?.data_table}
+                aggregationPeriod={aggregationPeriod}
+                setAggregationPeriod={setAggregationPeriod}
+              />
+              <Histograms histograms={data?.histograms} />
+            </>
+          )}
         </Box>
         <Divider />
       </Stack>
