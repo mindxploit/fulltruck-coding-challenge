@@ -37,27 +37,29 @@ const Dashboard: FC = () => {
   }, [])
 
   return (
-    <Box p={5}>
-      <Stack justifyContent={'center'} alignItems="center" spacing={2}>
-        <FullTruckLogo />
-        <Divider flexItem />
-        {data && (
-          <>
-            <Stack direction={'row'} spacing={2}>
-              <ScalarsPieChart data={data?.scalars} />
-              <KPIComponent kpis={data?.kpis} />
-            </Stack>
-            <CustomTable
-              isLoading={isLoading}
-              data={data?.data_table}
-              aggregationPeriod={aggregationPeriod}
-              setAggregationPeriod={setAggregationPeriod}
-            />
-            <Histograms histograms={data?.histograms} />
-          </>
-        )}
-      </Stack>
-    </Box>
+    <Container maxWidth="xl">
+      <Box py={3} px={1}>
+        <Stack justifyContent={'center'} alignItems="center" spacing={5}>
+          <FullTruckLogo />
+          <Divider flexItem />
+          {data && (
+            <>
+              <Stack direction={{ xs: 'row' }} spacing={2}>
+                <ScalarsPieChart data={data?.scalars} />
+                <KPIComponent kpis={data?.kpis} />
+              </Stack>
+              <Histograms histograms={data?.histograms} />
+              <CustomTable
+                isLoading={isLoading}
+                data={data?.data_table}
+                aggregationPeriod={aggregationPeriod}
+                setAggregationPeriod={setAggregationPeriod}
+              />
+            </>
+          )}
+        </Stack>
+      </Box>
+    </Container>
   )
 }
 

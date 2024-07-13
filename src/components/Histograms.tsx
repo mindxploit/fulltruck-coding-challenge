@@ -50,7 +50,7 @@ const Histograms: React.FC<HistogramsProps> = ({ histograms }) => {
   )
 
   return (
-    <Stack sx={{ flexDirection: { md: 'column', lg: 'row' } }}>
+    <Stack sx={{ maxWidth: '100%', flexDirection: { xs: 'column', lg: 'row' }, overflow: 'auto' }}>
       <Box>
         <Typography variant="h5" fontWeight={'bold'}>
           Margin %

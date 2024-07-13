@@ -8,7 +8,7 @@ import { format } from 'date-fns/format' // Import date-fns for date formatting
 import { startOfDay } from 'date-fns/startOfDay'
 import { startOfWeek } from 'date-fns/startOfWeek'
 import { startOfMonth } from 'date-fns/startOfMonth'
-import { Stack, Typography } from '@mui/material'
+import { Box, Container, Stack, Typography } from '@mui/material'
 
 type DataTableProps = {
   data: StatisticsResponse['data_table']
@@ -154,7 +154,7 @@ const CustomTable: React.FC<DataTableProps> = ({
   ]
 
   return (
-    <div>
+    <Box maxWidth={'100%'}>
       <Typography variant="h4" fontWeight={'bold'}>
         Table data
       </Typography>
@@ -199,7 +199,7 @@ const CustomTable: React.FC<DataTableProps> = ({
           disableRowSelectionOnClick
         />
       </div>
-    </div>
+    </Box>
   )
 }
 
