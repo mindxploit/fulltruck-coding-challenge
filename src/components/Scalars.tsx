@@ -1,6 +1,6 @@
 import React from 'react'
 import { PieChart } from '@mui/x-charts/PieChart'
-import { Box, Card, CardContent, Divider, Stack, Typography } from '@mui/material'
+import { Badge, Box, Card, CardContent, Divider, Stack, Typography } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 
@@ -98,17 +98,21 @@ const ScalarsPieChart: React.FC<ScalarsPieChartProps> = ({ data }) => {
                 <Stack direction={'row'} spacing={3}>
                   <Box>
                     <Typography variant="overline">Active clients</Typography>
-                    <Stack direction={'row'} alignItems={'center'} spacing={1}>
+                    <Stack direction={'row'} alignItems={'center'} spacing={1} mt={1}>
                       <PersonIcon />
-                      <Typography variant="h6">{data.active_clients}</Typography>
+                      <Badge badgeContent={'↑' + data.new_clients} color="error">
+                        <Typography variant="h6">{data.active_clients}</Typography>
+                      </Badge>
                     </Stack>
                   </Box>
 
                   <Box>
                     <Typography variant="overline">Active carriers</Typography>
-                    <Stack direction={'row'} alignItems={'center'} spacing={1}>
+                    <Stack direction={'row'} alignItems={'center'} spacing={1} mt={1}>
                       <LocalShippingIcon />
-                      <Typography variant="h6">{data.active_carriers}</Typography>
+                      <Badge badgeContent={'↑' + data.new_carriers} color="error">
+                        <Typography variant="h6">{data.active_carriers}</Typography>
+                      </Badge>
                     </Stack>
                   </Box>
                 </Stack>
