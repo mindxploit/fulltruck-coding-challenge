@@ -34,7 +34,7 @@ const Histograms: React.FC<HistogramsProps> = ({ histograms }) => {
           height={300}
           dataset={data}
           // series={[{ dataKey: 'value', label: title, color: '#8884d8' }]}
-          series={[{ dataKey: 'value', label: title, color: '#8884d8' }]}
+          series={[{ dataKey: 'value', label: title, color: '#f93f39' }]}
           xAxis={[{ scaleType: "band", dataKey: "date"}  ]}
           // tooltip={{ content: (tooltip) => <div>{tooltip?.name}: {tooltip?.value}</div> }}
           // xAxis={{ label: { value: 'Day', position: 'insideBottomRight', offset: 0 }, tickFormatter: (date) => format(date, 'dd') }}

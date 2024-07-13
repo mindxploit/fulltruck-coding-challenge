@@ -5,6 +5,8 @@ import FullTruckLogo from './components/logo/FullTruckLogo'
 import useStatistics, { StatisticsResponse } from './hook/useStatistics'
 import CustomTable from './components/CustomTable'
 import Histograms from './components/Histograms'
+import Scalars from './components/Scalars'
+import ScalarsPieChart from './components/Scalars'
 
 const Dashboard: FC = () => {
   const { fetchStatistics } = useStatistics()
@@ -40,6 +42,7 @@ const Dashboard: FC = () => {
           <FullTruckLogo />
           {data && (
             <>
+              <ScalarsPieChart data={data?.scalars} />
               <CustomTable
                 isLoading={isLoading}
                 data={data?.data_table}

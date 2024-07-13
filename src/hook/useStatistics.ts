@@ -11,63 +11,75 @@ type Props = {
 
 export type StatisticsResponse = {
   data_table: Array<{
-    active_carrier: number;
-    active_client: number;
-    aggregate_date: string;
-    assigned_count: number;
-    margin_abs: number;
-    margin_abs_per_order: number;
-    margin_perc: number;
-    new_carriers: number;
-    new_clients: number;
-    order_count: number;
-    order_per_period: number;
-    revenue: number;
-    revenue_assigned: number;
-    revenue_per_order: number;
-  }>;
+    active_carrier: number
+    active_client: number
+    aggregate_date: string
+    assigned_count: number
+    margin_abs: number
+    margin_abs_per_order: number
+    margin_perc: number
+    new_carriers: number
+    new_clients: number
+    order_count: number
+    order_per_period: number
+    revenue: number
+    revenue_assigned: number
+    revenue_per_order: number
+  }>
   histograms: {
     time_margin_perc: {
       data: Array<{
-        date: string;
-        margin_perc: number;
-      }>;
-      index_by: string;
-    };
+        date: string
+        margin_perc: number
+      }>
+      index_by: string
+    }
     time_order_count: {
       data: Array<{
-        date: string;
-        order_count: number;
-      }>;
-      index_by: string;
-    };
+        date: string
+        order_count: number
+      }>
+      index_by: string
+    }
     time_revenue: {
       data: Array<{
-        date: string;
-        margin_abs: number;
-        revenue: number;
-      }>;
-      index_by: string;
-    };
-  };
+        date: string
+        margin_abs: number
+        revenue: number
+      }>
+      index_by: string
+    }
+  }
   kpis: {
     carrier: {
       [key: string]: {
-        label: string;
-        margin_abs: number;
-        margin_abs_per_order: number;
-        margin_abs_perc_on_tot: number;
-        margin_perc: number;
-        order_count: number;
-        order_count_perc_on_tot: number;
-        revenue: number;
-        revenue_per_order: number;
-        revenue_perc_on_tot: number;
-      };
-    };
-  };
-};
-
+        label: string
+        margin_abs: number
+        margin_abs_per_order: number
+        margin_abs_perc_on_tot: number
+        margin_perc: number
+        order_count: number
+        order_count_perc_on_tot: number
+        revenue: number
+        revenue_per_order: number
+        revenue_perc_on_tot: number
+      }
+    }
+  }
+  scalars: {
+    active_carriers: number
+    active_clients: number
+    average_margin_perc: number
+    avg_order_margin_abs: number
+    avg_order_revenue: number
+    new_carriers: number
+    new_clients: number
+    total_assigned_count: number
+    total_margin_abs: number
+    total_order_count: number
+    total_revenue: number
+  }
+}
 
 /**
  * Custom hook for fetching statistics data.
