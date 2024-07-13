@@ -8,6 +8,7 @@ import { format } from 'date-fns/format' // Import date-fns for date formatting
 import { startOfDay } from 'date-fns/startOfDay'
 import { startOfWeek } from 'date-fns/startOfWeek'
 import { startOfMonth } from 'date-fns/startOfMonth'
+import { Stack, Typography } from '@mui/material'
 
 type DataTableProps = {
   data: StatisticsResponse['data_table']
@@ -16,7 +17,12 @@ type DataTableProps = {
   setAggregationPeriod: React.Dispatch<React.SetStateAction<'day' | 'week' | 'month'>>
 }
 
-const CustomTable: React.FC<DataTableProps> = ({ data, isLoading, aggregationPeriod, setAggregationPeriod }) => {
+const CustomTable: React.FC<DataTableProps> = ({
+  data,
+  isLoading,
+  aggregationPeriod,
+  setAggregationPeriod,
+}) => {
   const [filteredData, setFilteredData] = useState(data)
 
   const [startDate, setStartDate] = useState<Date | null>(null)
@@ -149,20 +155,24 @@ const CustomTable: React.FC<DataTableProps> = ({ data, isLoading, aggregationPer
 
   return (
     <div>
+      <Typography variant="h4" fontWeight={'bold'}>
+        Table data
+      </Typography>
       <div style={{ marginBottom: '1rem' }}>
         <label>
           Aggregation Period:
           <select
             value={aggregationPeriod}
             onChange={(e) => setAggregationPeriod(e.target.value as 'day' | 'week' | 'month')}
+            style={{ marginBottom: '.3rem', marginLeft: '.2rem' }}
           >
             <option value="day">Day</option>
             <option value="week">Week</option>
             <option value="month">Month</option>
           </select>
         </label>
-        <div>
-          <label>
+        <Stack direction={'row'} spacing={1}>
+          <label style={{ marginBottom: '.3rem', marginRight: '.2rem' }}>
             Start Date:
             <DatePicker
               selected={startDate}
@@ -178,7 +188,7 @@ const CustomTable: React.FC<DataTableProps> = ({ data, isLoading, aggregationPer
               dateFormat="yyyy-MM-dd"
             />
           </label>
-        </div>
+        </Stack>
       </div>
       <div style={{ height: 500, width: '100%' }}>
         <DataGrid

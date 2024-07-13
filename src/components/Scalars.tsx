@@ -39,8 +39,10 @@ const ScalarsPieChart: React.FC<ScalarsPieChartProps> = ({ data }) => {
   ]
 
   return (
-    <>
-      <Typography variant="h3">Overview</Typography>
+    <Stack>
+      <Typography variant="h4" fontWeight={'bold'}>
+        Overview
+      </Typography>
       <Card sx={{ width: 'fit-content' }}>
         <CardContent>
           <Stack direction={'row'} spacing={3} divider={<Divider orientation="vertical" flexItem />}>
@@ -142,7 +144,7 @@ const ScalarsPieChart: React.FC<ScalarsPieChartProps> = ({ data }) => {
           </Stack>
         </CardContent>
       </Card>
-    </>
+    </Stack>
   )
 }
 

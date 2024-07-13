@@ -65,6 +65,20 @@ export type StatisticsResponse = {
         revenue_perc_on_tot: number
       }
     }
+    client: {
+      [key: string]: {
+        label: string
+        margin_abs: number
+        margin_abs_per_order: number
+        margin_abs_perc_on_tot: number
+        margin_perc: number
+        order_count: number
+        order_count_perc_on_tot: number
+        revenue: number
+        revenue_per_order: number
+        revenue_perc_on_tot: number
+      }
+    }
   }
   scalars: {
     active_carriers: number

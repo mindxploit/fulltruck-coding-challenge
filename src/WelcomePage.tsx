@@ -7,6 +7,7 @@ import CustomTable from './components/CustomTable'
 import Histograms from './components/Histograms'
 import Scalars from './components/Scalars'
 import ScalarsPieChart from './components/Scalars'
+import KPIComponent from './components/Kpi'
 
 const Dashboard: FC = () => {
   const { fetchStatistics } = useStatistics()
@@ -36,26 +37,27 @@ const Dashboard: FC = () => {
   }, [])
 
   return (
-    <Container maxWidth="lg">
-      <Stack spacing={2}>
-        <Box justifyContent={'center'} alignItems="center">
-          <FullTruckLogo />
-          {data && (
-            <>
+    <Box p={5}>
+      <Stack justifyContent={'center'} alignItems="center" spacing={2}>
+        <FullTruckLogo />
+        <Divider flexItem />
+        {data && (
+          <>
+            <Stack direction={'row'} spacing={2}>
               <ScalarsPieChart data={data?.scalars} />
-              <CustomTable
-                isLoading={isLoading}
-                data={data?.data_table}
-                aggregationPeriod={aggregationPeriod}
-                setAggregationPeriod={setAggregationPeriod}
-              />
-              <Histograms histograms={data?.histograms} />
-            </>
-          )}
-        </Box>
-        <Divider />
+              <KPIComponent kpis={data?.kpis} />
+            </Stack>
+            <CustomTable
+              isLoading={isLoading}
+              data={data?.data_table}
+              aggregationPeriod={aggregationPeriod}
+              setAggregationPeriod={setAggregationPeriod}
+            />
+            <Histograms histograms={data?.histograms} />
+          </>
+        )}
       </Stack>
-    </Container>
+    </Box>
   )
 }
 
